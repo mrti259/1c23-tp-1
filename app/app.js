@@ -1,5 +1,6 @@
 import { nanoid } from "nanoid";
 import express from "express";
+import axios from "axios";
 
 const id = nanoid();
 const app = express();
@@ -11,24 +12,46 @@ app.use((req, res, next) => {
 });
 
 app.get("/ping", (req, res) => {
-	res.send("OK");
+	res.status(200).send("OK");
 });
 
-app.get("/metar", (req, res) => {
-	const { station } = req.query;
-	res.send(station);
+app.get("/metar", async (req, res) => {
+	const station = req.query.station;
+	if (station === undefined){
+		res.status(400).send("El usuario no ingresó un aeropuerto");
+		return;
+	}
+
+	try {
+		const response = await axios.get(`https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=${station}&hoursBeforeNow=1`);
+		res.status(200).send(response.data);
+	} catch(error){
+		res.status(502).send("La información del aeropuerto no llegó");
+	}
 });
 
-app.get("/space_news", (req, res) => {
+app.get("/space_news", async (req, res) => {
 	const titles = [];
-	res.send(titles);
+	try {
+		const news = await axios.get("https://api.spaceflightnewsapi.net/v3/articles?_limit=5");
+		news.data.forEach(article => {
+			titles.push(article.title);
+		})
+		res.status(200).send(titles);
+	} catch(error){
+		res.status(502).send("Las noticias no llegaron correctamente");
+	}
 });
 
-app.get("/fact", (req, res) => {
-	const fact = "";
-	res.send(fact);
-});
+app.get("/fact", async (req, res) => {
+	try {
+		const fact = await axios.get("https://uselessfacts.jsph.pl/api/v2/facts/random");
+		res.status(200).send(fact.data.text);
+	} catch(error){
+		res.status(502).send("El dato no llegó correctamente");
+	}
 
+});
 app.listen(PORT, () => {
 	console.log(`Escuchando en el puerto ${PORT}`);
 });

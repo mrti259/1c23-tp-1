@@ -16,10 +16,18 @@ app.get("/ping", (req, res) => {
 });
 
 app.get("/metar", async (req, res) => {
-	console.log(req.query)
 	const station = req.query.station;
-	let response = await axios.get(`https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=${station}&hoursBeforeNow=1`)
-	res.status(200).send(response.data);
+	if (station === undefined){
+		res.status(400).send("El usuario no ingresó un aeropuerto")
+		return
+	}
+
+	try {
+		let response = await axios.get(`https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=${station}&hoursBeforeNow=1`)
+		res.status(200).send(response.data);
+	} catch(error){
+		res.status(504).send("La información del aeropuerto no llegó")
+	}
 });
 
 app.get("/space_news", async (req, res) => {
@@ -29,9 +37,9 @@ app.get("/space_news", async (req, res) => {
 		news.data.forEach(article => {
 			titles.push(article.title)
 		})
-		res.send(titles);
+		res.status(200).send(titles);
 	} catch(error){
-		res.send("Las noticias no llegaron correctamente") // No se si manejar el error así y acá
+		res.status(504).send("Las noticias no llegaron correctamente") 
 	}
 });
 
@@ -40,7 +48,7 @@ app.get("/fact", async (req, res) => {
 		let fact = await axios.get("https://uselessfacts.jsph.pl/api/v2/facts/random")
 		res.status(200).send(fact.data.text);
 	} catch(error){
-		res.send("El dato no llegó correctamente") // No se si manejar el error así y acá
+		res.status(504).send("El dato no llegó correctamente") 
 	}
 
 });

@@ -1,41 +1,38 @@
 import StatsD from "hot-shots";
 
-const errorHandler = (error) => {
-  console.error("Error sending metric", error);
-};
-
 const metrics = new StatsD({
   host: "graphite",
   port: 8125,
-  errorHandler: errorHandler,
   tcpGracefulErrorHandling: true,
   udsGracefulErrorHandling: true,
+  errorHandler: (error) => {
+    console.log("Error sending metric", error);
+  },
 });
 
-const sendMetric = (metric, startDate) => {
-  metrics.timing(metric, new Date() - startDate);
-};
+function sendMetric(log, label, startTime) {
+  console.log(log);
+  metrics.timing(label, Date.now() - startTime);
+}
 
-export const metricsFnWrapper = async (name, fn) => {
-  const start = new Date();
-  let response;
-  try {
-    response = await fn();
-  } catch (error) {
-    console.log("Metrica FN enviada ERROR");
-    sendMetric(`${name}-fn-process-time`, start);
+export async function metricsFnWrapper(name, fn) {
+  const startTime = Date.now();
+  const response = await fn().catch(() => {
+    sendMetric(
+      "Metrica FN enviada ERROR",
+      `${name}-fn-process-time`,
+      startTime
+    );
     throw error;
-  }
-  console.log("Metrica FN enviada");
-  sendMetric(`${name}-fn-process-time`, start);
+  });
+  sendMetric("Metrica FN enviada", `${name}-fn-process-time`, startTime);
   return response;
-};
+}
 
-export const metricsControllerWrapper = (name, controller) => {
+export function metricsControllerWrapper(name, controller) {
   return async (req, res) => {
-    const start = new Date();
+    const startTime = Date.now();
     await controller(req, res);
-    console.log("Metrica CONTROLLER enviada");
-    sendMetric(`${name}-process-time`, start);
+    sendMetric("Metrica CONTROLLER enviada", `${name}-process-time`, startTime);
   };
-};
+}

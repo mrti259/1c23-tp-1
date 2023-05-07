@@ -6,11 +6,11 @@ services:
         ports:
             - "6379:6379"
         command: redis-server --save 20 1 --loglevel warning
-    
+
     node:
         build: ./app
         deploy:
-            replicas: 3
+            replicas: 4
         environment:
             REDIS_HOST: cache
             REDIS_PORT: 6379
@@ -62,4 +62,3 @@ volumes:
         driver: local
     cache:
         driver: local
-

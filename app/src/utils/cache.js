@@ -11,8 +11,8 @@ client.on("error", (err) => console.log("Redis Client Error", err));
 
 await client.connect();
 
-const set = (key, value) => {
-  return client.set(key, value);
+const set = (key, value, options = {}) => {
+  return client.set(key, value, options);
 };
 
 const get = (key) => {

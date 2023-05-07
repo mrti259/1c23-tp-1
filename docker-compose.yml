@@ -1,8 +1,10 @@
-version: '2'
+version: "2"
 
 services:
     node:
         build: ./app
+        deploy:
+            replicas: 3
 
     nginx:
         image: nginx:1.23.4

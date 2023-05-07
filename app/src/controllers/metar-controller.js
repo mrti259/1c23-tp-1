@@ -13,7 +13,7 @@ export const metarController = async (req, res) => {
     const metar = await getMetar(station);
     res.status(200).send(metar);
   } catch (error) {
-    res.status(502).send(error.message);
+    res.status(500).send(error.message);
   }
 };
 

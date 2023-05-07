@@ -1,5 +1,6 @@
 import axios from "axios";
 import { metricsFnWrapper } from "../utils/metrics.js";
+import { cache } from "../utils/cache.js";
 
 export const spaceNewsController = async (req, res) => {
   const titles = [];

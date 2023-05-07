@@ -1,7 +1,6 @@
 import { nanoid } from "nanoid";
 import express from "express";
-import { controller } from "./controllers/index.js";
-import { metricsControllerWrapper } from "./utils/metrics.js";
+import { appRouter, limitedRouter } from "./routers/index.js";
 
 const id = nanoid();
 const app = express();
@@ -12,16 +11,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/ping", metricsControllerWrapper("ping", controller.pingPong));
-
-app.get("/metar", metricsControllerWrapper("metar", controller.metar));
-
-app.get(
-  "/space_news",
-  metricsControllerWrapper("space-news", controller.spaceNews)
-);
-
-app.get("/fact", metricsControllerWrapper("fact", controller.fact));
+app.use("/", appRouter);
+app.use("/limited", limitedRouter);
 
 app.listen(PORT, () => {
   console.log(`Escuchando en el puerto ${PORT}`);

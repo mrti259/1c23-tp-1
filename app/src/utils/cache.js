@@ -19,4 +19,5 @@ const get = (key) => {
   return client.get(key);
 };
 
+export const clientRedis = client;
 export const cache = { set, get };

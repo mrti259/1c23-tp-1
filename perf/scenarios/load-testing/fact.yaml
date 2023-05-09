@@ -1,0 +1,36 @@
+config:
+  plugins:
+    statsd:
+      host: localhost
+      port: 8125
+      prefix: "artillery-api"
+
+  environments:
+    base-case:
+      target: 'http://localhost:5555/api/fact'
+    cache:
+      target: 'http://localhost:5555/api/fact?cache=true&cacheFillAmount=30'
+    replication:
+      target: "http://localhost:5555/replicated_api/fact"
+    rate-limiting:
+      target: "http://localhost:5555/api/limited/fact"
+
+  pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
+
+  phases:
+    - name: warm-up
+      duration: 45
+      arrivalRate: 10
+    - name: ramp-up
+      duration: 45
+      arrivalRate: 10
+      rampTo: 30
+    - name: plain
+      duration: 90
+      arrivalRate: 30
+    
+scenarios:
+  - name: Useless Facts - Root (/)
+    flow:
+      - get:
+          url: '/'

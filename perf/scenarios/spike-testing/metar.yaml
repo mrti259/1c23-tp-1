@@ -1,4 +1,8 @@
 config:
+  payload:
+    path: "../payloads/stations.csv"
+    fields:
+      - "station"
   plugins:
     statsd:
       host: localhost
@@ -8,12 +12,20 @@ config:
   environments:
     base-case:
       target: "http://localhost:5555/api/metar"
+      variables:
+        cache: "false"
     cache:
-      target: "http://localhost:5555/api/metar?cache=true"
+      target: "http://localhost:5555/api/metar"
+      variables:
+        cache: "true"
     replication:
       target: "http://localhost:5555/replicated_api/metar"
+      variables:
+        cache: "false"
     rate-limiting:
       target: "http://localhost:5555/api/limited/metar"
+      variables:
+        cache: "false"
 
   pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
 
@@ -43,3 +55,6 @@ scenarios:
     flow:
       - get:
           url: "/"
+          qs:
+            cache: "{{ cache }}"
+            station: "{{ station }}"

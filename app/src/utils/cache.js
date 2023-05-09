@@ -19,5 +19,12 @@ const get = (key) => {
   return client.get(key);
 };
 
-export const clientRedis = client;
-export const cache = { set, get };
+const lPush = (key, value) => {
+  return client.lPush(key, value);
+};
+
+const rPop = (key) => {
+  return client.rPop(key);
+};
+
+export const cache = { set, get, lPush, rPop };

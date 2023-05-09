@@ -1,5 +1,5 @@
 import axios from "axios";
-import { clientRedis } from "../utils/cache.js";
+import { cache } from "../utils/cache.js";
 import { metricsFnWrapper } from "../utils/metrics.js";
 
 const PROVIDER_ENDPOINT = "https://uselessfacts.jsph.pl/api/v2/facts/random";
@@ -27,7 +27,7 @@ const getFactWithoutCache = async () => {
 };
 
 const getFactCached = async (cacheFillAmount) => {
-  let fact = await clientRedis.rPop(FACT_CACHE_KEY);
+  let fact = await cache.rPop(FACT_CACHE_KEY);
   console.log("Fact obtenido de cache", fact);
 
   if (!fact) {
@@ -43,7 +43,7 @@ const fillCache = async (amount) => {
   console.log("Llenando cache de facts...");
   for (let i = 0; i < amount; i++) {
     const fact = await getFact();
-    await clientRedis.lPush(FACT_CACHE_KEY, fact.data.text);
+    await cache.lPush(FACT_CACHE_KEY, fact.data.text);
   }
   console.log("Cache de facts llenado");
 };

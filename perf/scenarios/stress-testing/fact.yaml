@@ -9,7 +9,7 @@ config:
     base-case:
       target: "http://localhost:5555/api/fact"
     cache:
-      target: "http://localhost:5555/api/fact?cache=true"
+      target: 'http://localhost:5555/api/fact?cache=true&cacheFillAmount=30'
     replication:
       target: "http://localhost:5555/replicated_api/fact"
     rate-limiting:

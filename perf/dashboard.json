@@ -473,7 +473,7 @@
           "hide": false,
           "refCount": 0,
           "refId": "E",
-          "target": "alias(stats.timers.space-news-process-time.mean, 'Space news | mean response time')"
+          "target": "alias(stats.timers.space-news-process-time.mean, 'SN | mean response time')"
         },
         {
           "datasource": {
@@ -483,7 +483,7 @@
           "hide": false,
           "refCount": 0,
           "refId": "F",
-          "target": "alias(stats.timers.space-news-process-time.upper, 'Space news | max response time')"
+          "target": "alias(stats.timers.space-news-process-time.upper, 'SN | max response time')"
         },
         {
           "datasource": {
@@ -617,7 +617,7 @@
           "hide": false,
           "refCount": 0,
           "refId": "E",
-          "target": "alias(stats.timers.space-news-provider-fn-process-time.mean, 'Space news provider | mean response time')"
+          "target": "alias(stats.timers.space-news-provider-fn-process-time.mean, 'SN provider | mean response time')"
         },
         {
           "datasource": {
@@ -627,7 +627,7 @@
           "hide": false,
           "refCount": 0,
           "refId": "F",
-          "target": "alias(stats.timers.space-news-provider-fn-process-time.upper, 'Space news provider | max response time')"
+          "target": "alias(stats.timers.space-news-provider-fn-process-time.upper, 'SN provider | max response time')"
         },
         {
           "datasource": {

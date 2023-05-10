@@ -82,7 +82,7 @@ const getMetarWithCache = async (station) => {
   return metar;
 };
 
-const getCacheKey = (station) => `${CACHE_BASE_KEY}${station}`;
+const getCacheKey = (station) => `${CACHE_BASE_KEY}${station.toLowerCase()}`;
 
 const setCache = (station, value) => {
   return cache.set(getCacheKey(station), JSON.stringify(value), {

@@ -433,7 +433,7 @@
           "hide": false,
           "refCount": 0,
           "refId": "A",
-          "target": "alias(stats.timers.ping-process-time.mean, 'Ping | mean response time ')"
+          "target": "alias(stats.timers.ping-process-time.mean, 'Ping|mean')"
         },
         {
           "datasource": {
@@ -443,7 +443,7 @@
           "hide": false,
           "refCount": 0,
           "refId": "D",
-          "target": "alias(stats.timers.ping-process-time.upper, 'Ping | max response time')"
+          "target": "alias(stats.timers.ping-process-time.upper, 'Ping|max')"
         },
         {
           "datasource": {
@@ -453,7 +453,7 @@
           "hide": false,
           "refCount": 0,
           "refId": "B",
-          "target": "alias(stats.timers.metar-process-time.mean, 'Metar | mean response time')"
+          "target": "alias(stats.timers.metar-process-time.mean, 'Metar|mean')"
         },
         {
           "datasource": {
@@ -463,7 +463,7 @@
           "hide": false,
           "refCount": 0,
           "refId": "C",
-          "target": "alias(stats.timers.metar-process-time.upper, 'Metar | max response time')"
+          "target": "alias(stats.timers.metar-process-time.upper, 'Metar|max')"
         },
         {
           "datasource": {
@@ -473,7 +473,7 @@
           "hide": false,
           "refCount": 0,
           "refId": "E",
-          "target": "alias(stats.timers.space-news-process-time.mean, 'SN | mean response time')"
+          "target": "alias(stats.timers.space-news-process-time.mean, 'SN|mean')"
         },
         {
           "datasource": {
@@ -483,7 +483,7 @@
           "hide": false,
           "refCount": 0,
           "refId": "F",
-          "target": "alias(stats.timers.space-news-process-time.upper, 'SN | max response time')"
+          "target": "alias(stats.timers.space-news-process-time.upper, 'SN|max')"
         },
         {
           "datasource": {
@@ -493,7 +493,7 @@
           "hide": false,
           "refCount": 0,
           "refId": "G",
-          "target": "alias(stats.timers.fact-process-time.mean, 'Fact | mean response time')"
+          "target": "alias(stats.timers.fact-process-time.mean, 'Fact|mean')"
         },
         {
           "datasource": {
@@ -503,7 +503,7 @@
           "hide": false,
           "refCount": 0,
           "refId": "H",
-          "target": "alias(stats.timers.fact-process-time.upper, 'Fact | max response time')"
+          "target": "alias(stats.timers.fact-process-time.upper, 'Fact|max')"
         }
       ],
       "thresholds": [],
@@ -597,7 +597,7 @@
           "hide": false,
           "refCount": 0,
           "refId": "B",
-          "target": "alias(stats.timers.metar-provider-fn-process-time.mean, 'Metar provider | mean response time')"
+          "target": "alias(stats.timers.metar-provider-fn-process-time.mean, 'MetarProv.|mean')"
         },
         {
           "datasource": {
@@ -607,7 +607,7 @@
           "hide": false,
           "refCount": 0,
           "refId": "C",
-          "target": "alias(stats.timers.metar-provider-fn-process-time.upper, 'Metar provider | max response time')"
+          "target": "alias(stats.timers.metar-provider-fn-process-time.upper, 'MetarProv.|max')"
         },
         {
           "datasource": {
@@ -617,7 +617,7 @@
           "hide": false,
           "refCount": 0,
           "refId": "E",
-          "target": "alias(stats.timers.space-news-provider-fn-process-time.mean, 'SN provider | mean response time')"
+          "target": "alias(stats.timers.space-news-provider-fn-process-time.mean, 'SNProv.|mean')"
         },
         {
           "datasource": {
@@ -627,7 +627,7 @@
           "hide": false,
           "refCount": 0,
           "refId": "F",
-          "target": "alias(stats.timers.space-news-provider-fn-process-time.upper, 'SN provider | max response time')"
+          "target": "alias(stats.timers.space-news-provider-fn-process-time.upper, 'SNProv.|max')"
         },
         {
           "datasource": {
@@ -637,7 +637,7 @@
           "hide": false,
           "refCount": 0,
           "refId": "G",
-          "target": "alias(stats.timers.fact-provider-fn-process-time.mean, 'Fact provider | mean response time')"
+          "target": "alias(stats.timers.fact-provider-fn-process-time.mean, 'FactProv.|mean')"
         },
         {
           "datasource": {
@@ -647,7 +647,7 @@
           "hide": false,
           "refCount": 0,
           "refId": "H",
-          "target": "alias(stats.timers.fact-provider-fn-process-time.upper, 'Fact provider | max response time')"
+          "target": "alias(stats.timers.fact-provider-fn-process-time.upper, 'FactProv.|max')"
         }
       ],
       "thresholds": [],

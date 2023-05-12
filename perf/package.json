@@ -6,6 +6,18 @@
   "scripts": {
     "artillery": "artillery",
     "node": "artillery run root.yaml -e api",
+    "load-testing:fact:base-case": "./run-scenario.sh load-testing fact base-case",
+    "load-testing:fact:cache": "./run-scenario.sh load-testing fact cache",
+    "load-testing:fact:replication": "./run-scenario.sh load-testing fact replication",
+    "load-testing:fact:rate-limiting": "./run-scenario.sh load-testing fact rate-limiting",
+    "load-testing:space-news:base-case": "./run-scenario.sh load-testing space-news base-case",
+    "load-testing:space-news:cache": "./run-scenario.sh load-testing space-news cache",
+    "load-testing:space-news:replication": "./run-scenario.sh load-testing space-news replication",
+    "load-testing:space-news:rate-limiting": "./run-scenario.sh load-testing space-news rate-limiting",
+    "load-testing:metar:base-case": "./run-scenario.sh load-testing metar base-case",
+    "load-testing:metar:cache": "./run-scenario.sh load-testing metar cache",
+    "load-testing:metar:replication": "./run-scenario.sh load-testing metar replication",
+    "load-testing:metar:rate-limiting": "./run-scenario.sh load-testing metar rate-limiting",
     "scenario": "./run-scenario.sh"
   },
   "author": "",
